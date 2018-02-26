@@ -57,7 +57,9 @@ namespace SampleApplication
             // The application now knows how to talk to the token endpoint.
 
             // Second: the application authenticates against the token endpoint
-            var tokenClient = new TokenClient(discoResult.TokenEndpoint, clientId, secret);
+            var tokenClient = new TokenClient(discoResult.TokenEndpoint, clientId, secret) {
+                BasicAuthenticationHeaderStyle = TokenClient.AuthenticationHeaderStyle.Rfc2617
+            };
 
             var tokenResponse = tokenClient.RequestClientCredentialsAsync().Result;
 
